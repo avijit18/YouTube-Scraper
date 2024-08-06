@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="
+            https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Video Details</title>
+</head>
+
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+<body class="bg-[#B4D6CD]">
+    <div class="bg-grey-900 flex justify-center items-center max-w-4xl mx-auto mt-8 p-6">
+        <div class="text-center text-[25px] font-bold">
+            <span>YouTube Video Details</span>
+            <a th:href="@{/}" class="text-blue-500">Find New 🔎</a>
+            <hr />
+        </div>
+    </div>
+
+    <div class="flex flex-col border-box px-[50px] w-[70%] mx-auto border-2 bg-[#6482AD]" id="copy_text">
+        <div class="flex items-center justify-end border-box p-2">
+            <i class="fa-regular fa-copy fa-2x cursor-pointer tooltip" onclick="copyDetails()" id="copy_btn_id">
+                <span id="tooltiptext_id" class="tooltiptext text-[15px] text-black">Copy</span>
+            </i>
+
+        </div>
+
+        <div class="w-full my-[15px]">
+            <p class="">
+                <span class="text-[25px] font-bold text-[#77E4C8]">Title: </span>
+                <span th:text="${title}" class="text-[19px] font-semibold text-white" id="copied_title"></span>
+            </p>
+        </div>
+
+        <div class="flex flex-col justify-center">
+            <span class="text-[25px] font-bold text-[#77E4C8]">Thumbnail: </span>
+            <img th:src="${thumbURL}" alt="Video Thumbnail" class="w-[60%]" />
+        </div>
+
+        <div class="flex flex-col justify-center my-[15px]">
+            <span class="text-[25px] font-bold text-[#77E4C8]">Description: </span>
+            <span th:text="${description}" class="text xl font-semibold text-white" id="copied_desc"></span>
+        </div>
+
+        <div>
+            <span class="text-[25px] font-bold text-[#77E4C8]">Tags: </span> <br />
+            <span th:each="tag : ${tags}" th:text="${tag} + ' , '" class="font-bold text-white" id="copied_tags"></span>
+            <div id="arrayData" th:json="${tags}" th:object="${tags}"></div>
+        </div>
+
+        <div class="w-full my-[15px]">
+            <p class="">
+                <span class="text-[25px] font-bold text-[#77E4C8]">Views: </span>
+                <span th:text="${viewCount}" class="text-[19px] font-semibold text-white" id="copied_views"></span>
+            </p>
+        </div>
+
+        <div class="w-full my-[15px]">
+            <p class="">
+                <span class="text-[25px] font-bold text-[#77E4C8]">Likes: </span>
+                <span th:text="${likeCount}" class="text-[19px] font-semibold text-white" id="copied_likes"></span>
+            </p>
+        </div>
+
+        <div class="w-full my-[15px]">
+            <p class="">
+                <span class="text-[25px] font-bold text-[#77E4C8]">Comments: </span>
+                <span th:text="${commentCount}" class="text-[19px] font-semibold text-white"
+                    id="copied_comments"></span>
+            </p>
+        </div>
+    </div>
+</body>l̥
+
+<script>
+    function copyDetails() {
+        // Select all details except the thumbnail image
+        const details = document.querySelector('#copy_text');
+        const textToCopy = details.innerText;
+
+        // Create a temporary textarea to hold the text
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = textToCopy;
+        document.body.appendChild(tempTextarea);
+
+        // Select and copy the text
+        tempTextarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary textarea
+        document.body.removeChild(tempTextarea);
+
+        // Notify user
+        // alert('Details copied to clipboard!');
+        document.getElementById("tooltiptext_id").textContent = "Copied"
+    }
+</script>
+
+</html>

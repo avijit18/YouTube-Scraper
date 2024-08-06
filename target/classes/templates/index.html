@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>YouTube Scraper</title>
+</head>
+
+<body class="bg-grey-700">
+<div class="items-center justify-center h-screen flex bg-[#B4D6CD]">
+
+    <div class="rounded-lg bg-[#6482AD] border-box px-10 py-10">
+        <form th:action="@{/processing}" method="post" class="bg-grey-900 rounded p-8">
+            <h1 class="text-6xl font-bold text-center mb-6 text-[#f0f8ff]">
+                YouTube Video Data Scraper
+            </h1>
+            <label class="block text-2xl font-medium mb-6 text-[#f0f8ff]" for="video-link">Enter your video link</label>
+            <input class="w-full border rounded-md bg-grey-800 border-box px-5 py-5" type="text" name="videoLink"
+                   id="videoLink"
+                   required/>
+
+            <div class="items-center justify-center flex w-[100%]">
+                <button class="mt-6 rounded bg-[#180161] py-4 px-10 text-2xl font-bold text-white" type="submit">
+                    Get Details
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
