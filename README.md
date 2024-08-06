@@ -64,7 +64,7 @@ google.api.key=YOUR_API_KEY
 ```
 
 # Contribute:
-Feel free to contribute to this project by submitting issues, suggesting features, or creating pull requests. Your input is valuable to make this tool even better! 😃
+Feel free to contribute to this project by submitting issues, suggesting features, or creating pull requests. If this repo is helpful, please star ⭐ this repo to show your support. Your input is valuable to make this tool even better! 😃
 
 ## Feedback
 I appreciate your feedback! Please open an issue on GitHub if you encounter any problems or have suggestions for improvement. Your feedback helps enhance the project for everyone.
